@@ -1,5 +1,5 @@
-<%= form_for(@movie) do |f| %>
-  <% if @movie.errors.any? %>
+<%= form_for(@movie, html: {multipart: true}) do |f| %>
+    <% if @movie.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
 
@@ -15,6 +15,14 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
+
+	<div>
+	  <%= f.file_field :poster %>
+	</div>
+
+    <p>
+      <%= f.label :remote_poster_url, 'or poster URL' %><br />
+      <%= f.text_field :remote_poster_url %>
   <div class="actions">
     <%= f.submit %>
   </div>
