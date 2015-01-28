@@ -11,13 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126170124) do
+ActiveRecord::Schema.define(version: 20150128150838) do
+
+  create_table "agents", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "movies", force: true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "poster"
+    t.integer  "agent_id"
   end
+
+  add_index "movies", ["agent_id"], name: "index_movies_on_agent_id"
 
 end
