@@ -1,25 +1,49 @@
 
 
 
-<div class="row">
-  <% @movie.each do |movie| %>
-      <div class="col-md-12">
+		<div class="row">
+         <% @movie.each do |movie| %>
+            <div class="col-sm-6 col-md-3">
+              <div class="thumbnail">
+                  <%= (image_tag movie.poster_url(:thumb).to_s, class: 'poster') %>
+              </div>
+              <button class="btn btn-link" data-toggle="modal" data-target="#todo-<%= movie.id %>-notes">
+                View Details
+              </button>
 
-        <div>
-          <%= movie.agent.name %>
-          <%= movie.title %>
-          <%= movie.year %>
-          <%= movie.runtime %>
-          <%= movie.id %>
+              <div class="modal fade" id="todo-<%= movie.id %>-notes" tabindex="-1" role="dialog" aria-labelledby="todo-<%= movie.id %>-label" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="todo-<%= movie.id %>-label">Movie Details</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div>
+                      Title:    <%= movie.title %>
+                      </div>
+                      <div>
+                      Starring: <%= movie.agent.name %>
+                      </div>
+                      <div>
+                      Year:     <%= movie.year %>
+                      </div>
+                      <div>
+					  Runtime:  <%= movie.runtime %>
+                      </div>
+                      <div>
+                      Synopsis: <%= movie.synopsis %>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+		    </div>
 
-        </div>
-        <div class="thumbnail">
-          <%= link_to (image_tag movie.poster_url(:thumb).to_s, class: 'poster'), movies_path %>
-        </div>
-
-      </div>
-  <% end %>
-</div>
+            <% end %>
+		</div>
 
 
 
