@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
-  @movie = Movie.all
+  @movie = Movie.all.group('year')
   end
 
   # GET /movies/1
