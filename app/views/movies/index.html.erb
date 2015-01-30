@@ -2,15 +2,24 @@
 
 
 <div class="row">
-  <% @movies.each do |movie| %>
+  <% @movie.each do |movie| %>
       <div class="col-md-12">
-        <div class="thumbnail">
-          <%= link_to (image_tag movie.poster_url(:thumb).to_s, class: 'poster'), movie %>
+
+        <div>
+          <%= movie.agent.name %>
+          <%= movie.title %>
+          <%= movie.year %>
+          <%= movie.runtime %>
+          <%= movie.id %>
+
         </div>
+        <div class="thumbnail">
+          <%= link_to (image_tag movie.poster_url(:thumb).to_s, class: 'poster'), movies_path %>
+        </div>
+
       </div>
   <% end %>
 </div>
 
 
 
-<%= link_to 'New Movie', new_movie_path %>
